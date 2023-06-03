@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Spotfinder',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Spotfinder'),
     );
   }
 }
@@ -56,6 +56,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String _text = "Hello World";
 
   void _incrementCounter() {
     setState(() {
@@ -64,6 +65,17 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
+      _counter++;
+    });
+  }
+
+  void _transformText() {
+    setState(() {
+      if (_text == _text.toUpperCase()) {
+        _text = _text.toLowerCase();
+      } else {
+        _text = _text.toUpperCase();
+      }
       _counter++;
     });
   }
@@ -108,10 +120,13 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text(
               'You have pushed the button this many times:',
             ),
+            Text('$_text'),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            ElevatedButton(
+                onPressed: () => _transformText(), child: Text('Hello'))
           ],
         ),
       ),
